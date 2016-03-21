@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Omniauth provider for fedena school management system}
   spec.description   = %q{Omniauth provider for fedena school management system}
-  spec.homepage      = "https://github.com/simplehrm/omniauth-fedena"
+  spec.homepage      = "https://github.com/tachyons/omniauth-fedena"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
