@@ -1,1 +1,1 @@
-require 'omniauth/strategies/simplehr'
+require 'omniauth/strategies/fedena'
