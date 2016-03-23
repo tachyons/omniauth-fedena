@@ -6,8 +6,7 @@ module OmniAuth
       option :name, :fedena
 
       option :client_options, {
-        :site => "http://fedena.com",
-        :authorize_url => "/oauth/authorize"
+        :site => "http://fedena.com"
       }
 
       uid { raw_info["username"] }
@@ -20,13 +19,17 @@ module OmniAuth
       end
 
       def build_access_token
-        Rails.logger.debug "Omniauth build access token"
-        options.token_params.merge!(:headers => {'Authorization' => "Token token=\"%s\"" },:header_format=>"Token token=\"%s\"")
+        Rails.logger.debug "Omniauth build access token "
+        options.auth_token_params.merge!(:header_format=>"Token token=\"%s\"")
+        verifier = request.params["code"]
         super
+      end
+      def callback_url
+        super.gsub(/\?.*/, '')
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/users/admin').parsed
+        @raw_info ||= access_token.get('/api/users/admin').body.to_json
       end
     end
   end
