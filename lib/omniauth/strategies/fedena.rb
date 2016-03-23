@@ -21,7 +21,7 @@ module OmniAuth
 
       def build_access_token
         Rails.logger.debug "Omniauth build access token"
-        options.token_params.merge!(:headers => {'Authorization' => 'Token token=\"%s\"' })
+        options.token_params.merge!(:headers => {'Authorization' => "Token token=\"%s\"" })
         super
       end
 
