@@ -14,6 +14,9 @@ module OmniAuth
       info do
         {
           :email => raw_info["email"],
+          :username => raw_info["username"],
+          :first_name => raw_info["first_name"],
+          :last_name => raw_info["last_name"],
           :user_type => raw_info["user_type"]
         }
       end
@@ -29,7 +32,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/api/users/admin').body.to_json
+        @raw_info ||= Hash.from_xml(access_token.get('/api/users/admin').body)["user_detail"]["user"]
       end
     end
   end
