@@ -32,7 +32,7 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= Hash.from_xml(access_token.get('/api/users/admin').body)["user_detail"]["user"]
+        @raw_info ||= Hash.from_xml(access_token.get('/api/users/'+access_token.params["user_info"]["username"]).body)["user_detail"]["user"]
       end
     end
   end
